@@ -1,8 +1,8 @@
 {
-  "name": "dashboard",
+  "name": "tablero",
   "version": "0.1.0",
-  "description": "My personal dashboard",
-  "main": "dashboard.js",
+  "description": "A terminal dashboard to enhance Developer's productivity",
+  "repository": "https://github.com/jorgeborges/tablero.git",
   "dependencies": {
     "autobahn": "^17.5.2",
     "blessed": "^0.1.81",
