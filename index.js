@@ -1,20 +1,17 @@
 const path = require('path');
 const blessed = require('blessed');
 const contrib = require('blessed-contrib');
-const yamlConfig = require('node-yaml-config');
-const Todoist = require(path.resolve(__dirname, 'widget/todoist.js'));
-const Cryptocurrency = require(path.resolve(__dirname, 'widget/cryptocurrency.js'));
+const DataSourceFactory = require(path.resolve(__dirname, 'lib/data-source/data-source-factory.js'));
+const Tasks = require(path.resolve(__dirname, 'lib/widget/tasks.js'));
+const Cryptocurrency = require(path.resolve(__dirname, 'lib/widget/cryptocurrency.js'));
 
-// init grid
+// Create Layout and place widget panels
 const screen = blessed.screen();
 const grid = new contrib.grid({ rows: 6, cols: 8, screen });
 
-// Place Grid Panels
-const config = yamlConfig.load(path.resolve(__dirname, 'config/config.yaml'));
-
 // Tasks
-const todoist = new Todoist(config);
-const tasksWidget = grid.set(0, 0, 3, 3, todoist.widgetType, todoist.widgetOptions);
+const tasks = new Tasks(DataSourceFactory.create('todoist'));
+const tasksWidget = grid.set(0, 0, 3, 3, tasks.getWidgetType(), tasks.getWidgetOptions());
 
 // THE ICONIC GA Real Time
 grid.set(0, 3, 1, 1, blessed.box, {label: '.the iconic status'});
@@ -29,8 +26,8 @@ grid.set(1, 3, 2, 2, blessed.box, {label: '.alarms'});
 grid.set(0, 5, 3, 3, contrib.map, {label: '.picolog status'});
 
 // Blockchain Assets
-const crypto = new Cryptocurrency(config);
-const cryptoWidget = grid.set(3, 0, 3, 3, crypto.widgetType, crypto.widgetOptions);
+const crypto = new Cryptocurrency(DataSourceFactory.create('poloniex'));
+const cryptoWidget = grid.set(3, 0, 3, 3, crypto.getWidgetType(), crypto.getWidgetOptions());
 
 // Email
 grid.set(3, 3, 1, 2, blessed.box, {label: '.email'});
@@ -72,7 +69,7 @@ grid.set(4, 7, 2, 1, blessed.box, {label: '.time_for'});
 
 // refresh dashboard
 setInterval(() => {
-  tasksWidget.setData(todoist.tick());
+  tasksWidget.setData(tasks.tick());
   cryptoWidget.setData(crypto.tick());
   updateDonut();
   screen.render();
