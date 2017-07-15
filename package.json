@@ -2,7 +2,11 @@
   "name": "tablero",
   "version": "0.1.0",
   "description": "A terminal dashboard to enhance Developer's productivity",
-  "repository": "https://github.com/jorgeborges/tablero.git",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jorgeborges/tablero.git"
+  },
   "dependencies": {
     "autobahn": "^17.5.2",
     "blessed": "^0.1.81",
@@ -12,7 +16,7 @@
     "request": "^2.81.0"
   },
   "devDependencies": {
-    "eslint": "^3.19.0",
+    "eslint": "^4.2.0",
     "eslint-config-airbnb-base": "^11.2.0",
     "eslint-plugin-import": "^2.6.1"
   },
