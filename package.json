@@ -13,7 +13,8 @@
     "blessed-contrib": "^4.7.5",
     "node-cache": "^4.1.1",
     "node-yaml-config": "0.0.4",
-    "request": "^2.81.0"
+    "request": "^2.81.0",
+    "twit": "^2.2.9"
   },
   "devDependencies": {
     "eslint": "^4.2.0",
