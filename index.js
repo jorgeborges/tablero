@@ -4,9 +4,13 @@ const contrib = require('blessed-contrib');
 const DataSourceFactory = require(path.resolve(__dirname, 'lib/data-source/data-source-factory.js'));
 const Tasks = require(path.resolve(__dirname, 'lib/widget/tasks.js'));
 const Cryptocurrency = require(path.resolve(__dirname, 'lib/widget/cryptocurrency.js'));
+const Quote = require(path.resolve(__dirname, 'lib/widget/quote.js'));
+const Pomodoro = require(path.resolve(__dirname, 'lib/widget/pomodoro.js'));
 
 // Create Layout and place widget panels
-const screen = blessed.screen();
+const screen = blessed.screen({
+  smartCSR: true
+});
 const grid = new contrib.grid({ rows: 6, cols: 8, screen });
 
 // Tasks
@@ -36,42 +40,26 @@ grid.set(3, 3, 1, 2, blessed.box, {label: '.email'});
 grid.set(4, 3, 2, 2, blessed.box, {label: '.calendar'});
 
 // Quote
-grid.set(3, 5, 1, 3, blessed.box, {label: '.info'});
+const quote = new Quote(DataSourceFactory.create('twitter'));
+const quoteWidget = grid.set(3, 5, 1, 3, quote.getWidgetType(), quote.getWidgetOptions());
 
 // Pomodoro
-const pomodoro = grid.set(4, 5, 2, 2, contrib.donut, {
-  label: '.pomodoro',
-  radius: 24,
-  arcWidth: 6,
-  remainColor: 'black',
-  yPadding: 2,
-  data: [
-    {percent: 0, label: 'work!', color: 'red'}
-  ]
-});
-
-let pct = 0.00;
-
-function updateDonut(){
-  if (pct > 0.99) pct = 0.00;
-  let color = "green";
-  if (pct >= 0.25) color = "cyan";
-  if (pct >= 0.5) color = "yellow";
-  if (pct >= 0.75) color = "red";
-  pomodoro.setData([
-    {percent: parseFloat((pct+0.00) % 1).toFixed(2), label: 'work!', 'color': color}
-  ]);
-  pct += 0.01;
-}
+const pomodoro = new Pomodoro(DataSourceFactory.create('pomodoro-timer'));
+const pomodoroWidget = grid.set(4, 5, 2, 2, pomodoro.getWidgetType(), pomodoro.getWidgetOptions());
 
 // Time For
-grid.set(4, 7, 2, 1, blessed.box, {label: '.time_for'});
+const timeForWidget = grid.set(4, 7, 2, 1, blessed.box, {label: '.time_for', align: 'center',
+  valign: 'center',
+  padding: {top: 10},
+  content: 'Hello world!'});
+// timeForWidget.setContent('hello');
 
 // refresh dashboard
 setInterval(() => {
   tasksWidget.setData(tasks.tick());
   cryptoWidget.setData(crypto.tick());
-  updateDonut();
+  quoteWidget.setText(quote.tick());
+  pomodoroWidget.setData(pomodoro.tick());
   screen.render();
 }, 1000);
 
