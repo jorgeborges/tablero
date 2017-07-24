@@ -26,7 +26,7 @@ grid.set(0, 4, 1, 1, blessed.box, {label: '.github'});
 // Alarms
 grid.set(1, 3, 2, 2, blessed.box, {label: '.alarms'});
 
-// World Map
+// Picolog
 grid.set(0, 5, 3, 3, contrib.map, {label: '.picolog status'});
 
 // Blockchain Assets
