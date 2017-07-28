@@ -48,11 +48,17 @@ const pomodoro = new Pomodoro(DataSourceFactory.create('pomodoro-timer'));
 const pomodoroWidget = grid.set(4, 5, 2, 2, pomodoro.getWidgetType(), pomodoro.getWidgetOptions());
 
 // Time For
-const timeForWidget = grid.set(4, 7, 2, 1, blessed.box, {label: '.time_for', align: 'center',
+const timeForWidget = grid.set(4, 7, 1, 1, blessed.box, {label: '.time_for', align: 'center',
   valign: 'center',
-  padding: {top: 10},
-  content: 'Hello world!'});
+  padding: {top: 2},
+  content: 'Work!'});
 // timeForWidget.setContent('hello');
+
+// Mode
+const modeWidget = grid.set(5, 7, 1, 1, blessed.box, {label: '.mode', align: 'center',
+  valign: 'center',
+  padding: {top: 5},
+  content: '[Mode]'});
 
 // refresh dashboard
 setInterval(() => {
