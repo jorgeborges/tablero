@@ -6,6 +6,7 @@ const Tasks = require(path.resolve(__dirname, 'src/widget/tasks.js'));
 const Cryptocurrency = require(path.resolve(__dirname, 'src/widget/cryptocurrency.js'));
 const Quote = require(path.resolve(__dirname, 'src/widget/quote.js'));
 const Pomodoro = require(path.resolve(__dirname, 'src/widget/pomodoro.js'));
+const TimeFor = require(path.resolve(__dirname, 'src/widget/time-for.js'));
 
 // Create Layout and place widget panels
 const screen = blessed.screen({
@@ -48,11 +49,8 @@ const pomodoro = new Pomodoro(DataSourceFactory.create('pomodoro-timer'));
 const pomodoroWidget = grid.set(4, 5, 2, 2, pomodoro.getWidgetType(), pomodoro.getWidgetOptions());
 
 // Time For
-const timeForWidget = grid.set(4, 7, 1, 1, blessed.box, {label: '.time_for', align: 'center',
-  valign: 'center',
-  padding: {top: 2},
-  content: 'Work!'});
-// timeForWidget.setContent('hello');
+const timeFor = new TimeFor(DataSourceFactory.create('schedule'));
+const timeForWidget = grid.set(4, 7, 1, 1, timeFor.getWidgetType(), timeFor.getWidgetOptions());
 
 // Mode
 const modeWidget = grid.set(5, 7, 1, 1, blessed.box, {label: '.mode', align: 'center',
@@ -66,6 +64,7 @@ setInterval(() => {
   cryptoWidget.setData(crypto.tick());
   quoteWidget.setText(quote.tick());
   pomodoroWidget.setData(pomodoro.tick());
+  timeForWidget.setText(timeFor.tick());
   screen.render();
 }, 1000);
 

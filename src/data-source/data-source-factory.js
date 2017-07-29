@@ -4,6 +4,7 @@ const Todoist = require(path.resolve(__dirname, 'todoist.js'));
 const Poloniex = require(path.resolve(__dirname, 'poloniex.js'));
 const Twitter = require(path.resolve(__dirname, 'twitter.js'));
 const PomodoroTimer = require(path.resolve(__dirname, 'pomodoro-timer.js'));
+const Schedule = require(path.resolve(__dirname, 'schedule.js'));
 
 class DataSourceFactory {
 
@@ -28,6 +29,9 @@ class DataSourceFactory {
         break;
       case 'pomodoro-timer':
         dataSource = new PomodoroTimer(config);
+        break;
+      case 'schedule':
+        dataSource = new Schedule(config);
         break;
       default:
         throw new TypeError('Invalid Data Source name');
