@@ -18,7 +18,7 @@ class AbstractDataSource {
    *
    * @private
    */
-  _setData() {
+  _setData(data) {
     throw new TypeError('Must override method');
   }
 }
