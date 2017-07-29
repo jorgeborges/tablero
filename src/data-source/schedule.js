@@ -24,7 +24,9 @@ class Schedule extends AbstractDataSource {
 
   _updateTimeFor() {
     const currentDate = new Date();
-    const currentSchedule = this._schedule.find(scheduleData => currentDate >= scheduleData.start_time && currentDate < scheduleData.end_time);
+    const currentSchedule = this._schedule.find(
+      scheduleData => currentDate >= scheduleData.start_time && currentDate < scheduleData.end_time
+    );
     this._setData(currentSchedule);
   }
 
