@@ -29,7 +29,7 @@ class Schedule extends AbstractDataSource {
   }
 
   /**
-   * Initializes and places the items of the schedule in an array of objects.
+   * Creates and array of objects schedules in order to make comparison with current Date easier.
    *
    * @param {Array} schedule
    * @private
