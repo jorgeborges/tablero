@@ -5,3 +5,9 @@ default:
     cache_in_seconds: 60
   cryptocurrency:
     coins: ['BTC', 'ETH', 'XRP', 'LTC', 'DASH', 'XMR', 'ZEC', 'ETC']
+  quote:
+    twitter:
+      consumer_key: %TWITTER_CONSUMER_KEY%
+      consumer_secret: %TWITTER_CONSUMER_SECRET%
+      access_token: %TWITTER_ACCESS_TOKEN%
+      access_token_secret: %TWITTER_ACCESS_TOKEN_SECRET%
