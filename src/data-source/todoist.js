@@ -28,7 +28,7 @@ class Todoist extends AbstractDataSource {
       const formData = {
         token: this._config.todoist.api_token,
         sync_token: '*',
-        resource_types: '["items", "labels"]',
+        resource_types: '["items", "labels", "projects"]',
       };
 
       request
@@ -62,11 +62,14 @@ class Todoist extends AbstractDataSource {
     const labels = new Map();
     data.labels.forEach(label => labels.set(label.id, label.name));
 
+    const projects = new Map();
+    data.projects.forEach(project => projects.set(project.id, project.name));
+
     let items = data.items
       .filter(item => Todoist._isTodayOrPastdue(item.due_date_utc))
       .map(item =>
         [
-          `◘ ${item.content}`,
+          `◘ ${projects.get(item.project_id)}: ${item.content}`,
           item.labels.sort().reduce((allLabels, labelId) => `${allLabels} ${labels.get(labelId)}`, ''),
         ]
       );
