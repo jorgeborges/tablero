@@ -32,7 +32,7 @@ class Todoist extends AbstractDataSource {
       };
 
       request
-        .post({url: 'https://todoist.com/API/v7/sync', formData }, (err, httpResponse, body) => {
+        .post({ url: 'https://todoist.com/API/v7/sync', formData }, (err, httpResponse, body) => {
           if (err) {
             this._setData([['ERROR!', '']]);
 
