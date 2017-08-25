@@ -6,13 +6,7 @@ class Twitter extends AbstractDataSource {
   constructor(config) {
     super(config);
 
-    this.twitter = new Twit({
-      consumer_key: config.quote.twitter.consumer_key,
-      consumer_secret: config.quote.twitter.consumer_secret,
-      access_token: config.quote.twitter.access_token,
-      access_token_secret: config.quote.twitter.access_token_secret,
-      timeout_ms: 60 * 1000,
-    });
+    this.twitter = new Twit(config.quote.twitter);
 
     this.twitter.get(
       'statuses/user_timeline',
