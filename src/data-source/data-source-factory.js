@@ -7,7 +7,6 @@ const PomodoroTimer = require(path.resolve(__dirname, 'pomodoro-timer.js'));
 const Schedule = require(path.resolve(__dirname, 'schedule.js'));
 
 class DataSourceFactory {
-
   /**
    *
    * @param {string} dataSourceName
