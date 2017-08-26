@@ -22,7 +22,8 @@
     "eslint-plugin-import": "^2.6.1"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": " LANG=en_US.utf8 TERM=xterm-256color node src/index.js"
   },
   "author": "Jorge A. Borges",
   "license": "MIT"

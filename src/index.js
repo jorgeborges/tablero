@@ -1,12 +1,12 @@
 const path = require('path');
 const blessed = require('blessed');
 const contrib = require('blessed-contrib');
-const DataSourceFactory = require(path.resolve(__dirname, 'src/data-source/data-source-factory.js'));
-const Tasks = require(path.resolve(__dirname, 'src/widget/tasks.js'));
-const Cryptocurrency = require(path.resolve(__dirname, 'src/widget/cryptocurrency.js'));
-const Quote = require(path.resolve(__dirname, 'src/widget/quote.js'));
-const Pomodoro = require(path.resolve(__dirname, 'src/widget/pomodoro.js'));
-const TimeFor = require(path.resolve(__dirname, 'src/widget/time-for.js'));
+const DataSourceFactory = require(path.resolve(__dirname, 'data-source/data-source-factory.js'));
+const Tasks = require(path.resolve(__dirname, 'widget/tasks.js'));
+const Cryptocurrency = require(path.resolve(__dirname, 'widget/cryptocurrency.js'));
+const Quote = require(path.resolve(__dirname, 'widget/quote.js'));
+const Pomodoro = require(path.resolve(__dirname, 'widget/pomodoro.js'));
+const TimeFor = require(path.resolve(__dirname, 'widget/time-for.js'));
 
 // Create Layout and place widget panels
 const screen = blessed.screen({
