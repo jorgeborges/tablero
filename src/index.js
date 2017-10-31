@@ -36,10 +36,10 @@ const crypto = new Cryptocurrency(DataSourceFactory.create('poloniex'));
 const cryptoWidget = grid.set(3, 0, 3, 3, crypto.getWidgetType(), crypto.getWidgetOptions());
 
 // Email
-grid.set(3, 3, 1, 2, blessed.box, {label: '.email'});
+grid.set(3, 3, 1, 2, blessed.box, { label: '.email' });
 
 // Calendar
-grid.set(4, 3, 2, 2, blessed.box, {label: '.calendar'});
+grid.set(4, 3, 2, 2, blessed.box, { label: '.calendar' });
 
 // Quote
 const quote = new Quote(DataSourceFactory.create('twitter'));
@@ -54,10 +54,15 @@ const timeFor = new TimeFor(DataSourceFactory.create('schedule'));
 const timeForWidget = grid.set(4, 7, 1, 1, timeFor.getWidgetType(), timeFor.getWidgetOptions());
 
 // Mode
-const modeWidget = grid.set(5, 7, 1, 1, blessed.box, {label: '.mode', align: 'center',
-  valign: 'center',
-  padding: {top: 5},
-  content: '[Mode]'});
+const modeWidget = grid.set(5, 7, 1, 1, blessed.box,
+  {
+    label: '.mode',
+    align: 'center',
+    valign: 'center',
+    padding: { top: 5 },
+    content: '[Mode]',
+  }
+);
 
 // refresh dashboard
 setInterval(() => {

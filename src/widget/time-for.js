@@ -9,7 +9,7 @@ class TimeFor extends AbstractWidget {
       align: 'center',
       valign: 'center',
       padding: { top: 2 },
-      content: '> LOADING'
+      content: '> LOADING',
     }, dataSource);
   }
 }
